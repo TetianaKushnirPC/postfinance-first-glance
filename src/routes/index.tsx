@@ -40,9 +40,25 @@ const slides: Slide[] = [
     art: <svg viewBox="0 0 400 300"><rect x="-20" y="40" width="250" height="300" rx="40" className="fill-ink" /><rect x="240" y="120" width="180" height="220" rx="40" className="fill-brand" /><rect x="160" y="200" width="120" height="140" rx="60" className="fill-card" /></svg>,
   },
   {
-    theme: "brand", label: "Your rhythm", bg: rhythmBg.url,
-    text: <>Thursday is your busiest day for payments: <b>71</b> of 453 in 2025.</>,
-    art: <svg viewBox="0 0 400 300">{[40, 90, 120, 210, 70, 50, 30].map((h, i) => (<rect key={i} x={20 + i * 54} y={300 - h} width="44" height={h + 40} rx="22" className={i === 3 ? "fill-card" : "fill-mint"} />))}</svg>,
+    theme: "ink", label: "Your rhythm",
+    text: <>Thursday is your busiest day for payments: <b className="text-brand">71</b> of 453 in 2025.</>,
+    art: (
+      <div className="relative px-7 pb-24">
+        <img src={logoIcon.url} alt="" className="pointer-events-none absolute -top-40 right-0 w-72 max-w-none opacity-15" />
+        <div className="relative flex items-end gap-3">
+          <p className="text-[7rem] font-extrabold leading-none tracking-tight text-brand">71</p>
+          <p className="pb-4 text-sm font-bold leading-tight opacity-70">payments<br />on Thursdays</p>
+        </div>
+        <div className="relative mt-8 flex items-end justify-between gap-2">
+          {[40, 90, 120, 210, 70, 50, 30].map((h, i) => (
+            <div key={i} className="flex flex-1 flex-col items-center gap-2">
+              <div className={`w-full rounded-full ${i === 3 ? "bg-brand" : "bg-mint/25"}`} style={{ height: h * 0.55 }} />
+              <span className={`text-xs font-bold ${i === 3 ? "text-brand" : "opacity-50"}`}>{"MTWTFSS"[i]}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
   },
   {
     theme: "ink", label: "3 tough months, one cause", amount: "18'395.00",
