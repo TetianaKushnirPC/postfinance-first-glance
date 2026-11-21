@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import logo from "@/assets/postfinance_logo.svg.asset.json";
+import logo from "@/assets/postfinance-ch-logo.png.asset.json";
+import logoIcon from "@/assets/postfinance-icon-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,15 +27,11 @@ const surface: Record<Theme, string> = {
   mint: "bg-mint text-ink",
 };
 
-const Plus = ({ className }: { className: string }) => (
-  <path className={className} d="M140 0h120l-30 140h170l-24 120H206l-36 200H50l36-200H-80l24-120H110z" />
-);
-
 const slides: Slide[] = [
   {
     theme: "ink", label: "Your year in one line", amount: "8'652.74",
     text: <>CHF 8'652.74 stayed.</>,
-    art: <svg viewBox="0 0 400 380"><g transform="translate(60 0)"><Plus className="fill-brand" /></g><circle cx="40" cy="330" r="90" className="fill-mint" /></svg>,
+    art: <div className="relative"><img src={logoIcon.url} alt="" className="w-3/4 translate-x-16" /><div className="absolute bottom-2 left-6 h-24 w-24 rounded-full bg-brand" /></div>,
   },
   {
     theme: "mint", label: "Where the money lives", amount: "44'165.10",
@@ -47,8 +44,8 @@ const slides: Slide[] = [
     art: <svg viewBox="0 0 400 300">{[40, 90, 120, 210, 70, 50, 30].map((h, i) => (<rect key={i} x={20 + i * 54} y={300 - h} width="44" height={h + 40} rx="22" className={i === 3 ? "fill-ink" : "fill-card"} />))}</svg>,
   },
   {
-    theme: "ink", label: "3 red months, one cause", amount: "18'395.00",
-    text: <>3 months ended red. In each, one large purchase made the difference.</>,
+    theme: "ink", label: "3 tough months, one cause", amount: "18'395.00",
+    text: <>3 months ended in the minus. In each, one large purchase made the difference.</>,
     art: <svg viewBox="0 0 400 300">{Array.from({ length: 12 }).map((_, i) => (<circle key={i} cx={40 + (i % 6) * 64} cy={130 + Math.floor(i / 6) * 80} r="26" className={[2, 6, 9].includes(i) ? "fill-brand" : "fill-mint/20"} />))}</svg>,
   },
   {
