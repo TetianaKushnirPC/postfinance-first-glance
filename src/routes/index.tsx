@@ -3,6 +3,7 @@ import { useState, type ReactNode } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import logo from "@/assets/postfinance-ch-logo.png.asset.json";
 import logoIcon from "@/assets/postfinance-icon-logo.png.asset.json";
+import rhythmBg from "@/assets/rhythm-cross-bg.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/")({
 });
 
 type Theme = "brand" | "ink" | "mint";
-type Slide = { theme: Theme; label: string; amount?: string; text: ReactNode; art: ReactNode; extra?: ReactNode };
+type Slide = { theme: Theme; label: string; amount?: string; text: ReactNode; art: ReactNode; extra?: ReactNode; bg?: string };
 
 const surface: Record<Theme, string> = {
   brand: "bg-brand text-ink",
@@ -39,14 +40,9 @@ const slides: Slide[] = [
     art: <svg viewBox="0 0 400 300"><rect x="-20" y="40" width="250" height="300" rx="40" className="fill-ink" /><rect x="240" y="120" width="180" height="220" rx="40" className="fill-brand" /><rect x="160" y="200" width="120" height="140" rx="60" className="fill-card" /></svg>,
   },
   {
-    theme: "brand", label: "Your rhythm",
+    theme: "brand", label: "Your rhythm", bg: rhythmBg.url,
     text: <>Thursday is your busiest day for payments: <b>71</b> of 453 in 2025.</>,
-    art: (
-      <div className="relative">
-        <img src={logoIcon.url} alt="" className="absolute -top-56 left-1/2 w-[520px] max-w-none -translate-x-1/2 opacity-90" />
-        <svg viewBox="0 0 400 300" className="relative">{[40, 90, 120, 210, 70, 50, 30].map((h, i) => (<rect key={i} x={20 + i * 54} y={300 - h} width="44" height={h + 40} rx="22" className={i === 3 ? "fill-brand" : "fill-mint"} />))}</svg>
-      </div>
-    ),
+    art: <svg viewBox="0 0 400 300">{[40, 90, 120, 210, 70, 50, 30].map((h, i) => (<rect key={i} x={20 + i * 54} y={300 - h} width="44" height={h + 40} rx="22" className={i === 3 ? "fill-card" : "fill-mint"} />))}</svg>,
   },
   {
     theme: "ink", label: "3 tough months, one cause", amount: "18'395.00",
@@ -78,6 +74,7 @@ function Index() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-mint p-4">
       <section className={`relative flex h-[820px] w-full max-w-[400px] flex-col overflow-hidden rounded-[2.5rem] shadow-2xl transition-colors duration-500 ${surface[s.theme]}`}>
+        {s.bg && <img src={s.bg} alt="" className="absolute inset-0 h-full w-full object-cover" />}
         <header className="relative z-10 px-6 pt-6">
           <div className="flex gap-1">
             {slides.map((_, k) => (
