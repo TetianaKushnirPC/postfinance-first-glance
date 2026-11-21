@@ -38,6 +38,10 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
   --color-background: var(--background);
+  --color-brand: var(--brand);
+  --color-ink: var(--ink);
+  --color-mint: var(--mint);
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -74,6 +78,9 @@
 
 :root {
   --radius: 0.625rem;
+  --brand: oklch(0.86 0.15 88);
+  --ink: oklch(0.37 0.055 220);
+  --mint: oklch(0.96 0.01 200);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
