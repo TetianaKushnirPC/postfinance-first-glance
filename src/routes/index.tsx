@@ -41,7 +41,12 @@ const slides: Slide[] = [
   {
     theme: "brand", label: "Your rhythm",
     text: <>Thursday is your busiest day for payments: <b>71</b> of 453 in 2025.</>,
-    art: <svg viewBox="0 0 400 300">{[40, 90, 120, 210, 70, 50, 30].map((h, i) => (<rect key={i} x={20 + i * 54} y={300 - h} width="44" height={h + 40} rx="22" className={i === 3 ? "fill-ink" : "fill-card"} />))}</svg>,
+    art: (
+      <div className="relative">
+        <img src={logoIcon.url} alt="" className="absolute -top-56 left-1/2 w-[520px] max-w-none -translate-x-1/2 opacity-90" />
+        <svg viewBox="0 0 400 300" className="relative">{[40, 90, 120, 210, 70, 50, 30].map((h, i) => (<rect key={i} x={20 + i * 54} y={300 - h} width="44" height={h + 40} rx="22" className={i === 3 ? "fill-brand" : "fill-mint"} />))}</svg>
+      </div>
+    ),
   },
   {
     theme: "ink", label: "3 tough months, one cause", amount: "18'395.00",
