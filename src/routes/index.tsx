@@ -49,13 +49,28 @@ const slides: Slide[] = [
           <p className="text-[7rem] font-extrabold leading-none tracking-tight text-brand">71</p>
           <p className="pb-4 text-sm font-bold leading-tight opacity-70">payments<br />on Thursdays</p>
         </div>
-        <div className="relative mt-8 flex items-end justify-between gap-2">
-          {[40, 90, 120, 210, 70, 50, 30].map((h, i) => (
-            <div key={i} className="flex flex-1 flex-col items-center gap-2">
-              <div className={`w-full rounded-full ${i === 3 ? "bg-brand" : "bg-mint/25"}`} style={{ height: h * 0.55 }} />
-              <span className={`text-xs font-bold ${i === 3 ? "text-brand" : "opacity-50"}`}>{"MTWTFSS"[i]}</span>
-            </div>
-          ))}
+        <div className="relative mt-8">
+          <div className="mb-2 grid grid-cols-7 gap-1.5 text-center text-[10px] font-bold opacity-50">
+            {"MTWTFSS".split("").map((d, i) => <span key={i}>{d}</span>)}
+          </div>
+          <div className="grid grid-cols-7 gap-1.5">
+            {Array.from({ length: 35 }).map((_, i) => {
+              const day = i - 2; // 1 Jan 2025 was a Wednesday
+              const inMonth = day >= 0 && day < 31;
+              const isThursday = inMonth && day % 7 === 1;
+              return (
+                <div
+                  key={i}
+                  className={`flex aspect-square items-center justify-center rounded-lg text-xs font-bold ${
+                    !inMonth ? "" : isThursday ? "bg-brand text-ink" : "bg-mint/10 text-mint/60"
+                  }`}
+                >
+                  {inMonth ? day + 1 : ""}
+                </div>
+              );
+            })}
+          </div>
+          <p className="mt-3 text-xs font-bold opacity-60">January 2025 · every Thursday marked</p>
         </div>
       </div>
     ),
